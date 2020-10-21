@@ -20,7 +20,7 @@ import { MessageBar, XMessageBar } from './message_bar'
 import { Picker, XPicker } from './picker'
 import { Visualization, XVisualization } from './plot'
 import { Progress, XProgress } from './progress'
-import { bond, Card, Packed, unpack, xid } from './qd'
+import { bond, Card, Packed, unpack } from './qd'
 import { RangeSlider, XRangeSlider } from './range_slider'
 import { Separator, XSeparator } from './separator'
 import { Slider, XSlider } from './slider'
@@ -135,7 +135,7 @@ const
 
 export const
   XComponents = ({ items }: { items: Component[] }) => {
-    const components = items.map(m => <XComponent key={xid()} model={m} />)
+    const components = items.map((m, i) => <XComponent key={i} model={m} />)
     return <>{components}</>
   }
 
