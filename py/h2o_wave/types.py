@@ -3771,6 +3771,7 @@ class VegaVisualization:
             visible,
         )
 
+id_ = 0
 
 class Component:
     """Create a component.
@@ -3814,6 +3815,9 @@ class Component:
             visualization: Optional[Visualization] = None,
             vega_visualization: Optional[VegaVisualization] = None,
     ):
+        global id_
+        id_ += 1
+        self.id = id_
         self.text = text
         """Text block."""
         self.text_xl = text_xl
@@ -3890,6 +3894,7 @@ class Component:
     def dump(self) -> Dict:
         """Returns the contents of this object as a dict."""
         return _dump(
+            id=self.id,
             text=None if self.text is None else self.text.dump(),
             text_xl=None if self.text_xl is None else self.text_xl.dump(),
             text_l=None if self.text_l is None else self.text_l.dump(),

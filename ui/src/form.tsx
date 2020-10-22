@@ -20,7 +20,7 @@ import { MessageBar, XMessageBar } from './message_bar'
 import { Picker, XPicker } from './picker'
 import { Visualization, XVisualization } from './plot'
 import { Progress, XProgress } from './progress'
-import { bond, Card, Packed, unpack } from './qd'
+import { bond, Card, Packed, unpack, U } from './qd'
 import { RangeSlider, XRangeSlider } from './range_slider'
 import { Separator, XSeparator } from './separator'
 import { Slider, XSlider } from './slider'
@@ -132,12 +132,10 @@ const
     }
   })
 
+export type ComponentWithId = Component & { id: U }
 
 export const
-  XComponents = ({ items }: { items: Component[] }) => {
-    const components = items.map((m, i) => <XComponent key={i} model={m} />)
-    return <>{components}</>
-  }
+  XComponents = ({ items }: { items: ComponentWithId[] }) => <>{items.map((m) => <XComponent key={m.id} model={m} />)}</>
 
 const
   XComponent = ({ model: m }: { model: Component }) => {
@@ -186,7 +184,7 @@ export const
       render = () => {
         const
           s = theme.merge(defaults, state),
-          items = unpack<Component[]>(s.items) // XXX ugly
+          items = unpack<ComponentWithId[]>(s.items) // XXX ugly
 
         return (
           <div data-test={name} className={css.form}>
