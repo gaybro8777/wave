@@ -19,7 +19,7 @@ import { cards, Format } from './layout'
 import { MicroArea } from './parts/microarea'
 import { MicroBars } from './parts/microbars'
 import { bond, Card, Data, F, Rec, S, unpack } from './qd'
-import { getTheme } from './theme'
+import { cssVar, getTheme } from './theme'
 
 const
   theme = getTheme(),
@@ -34,7 +34,7 @@ const
     },
     aux_value: {
       ...theme.font.s12,
-      color: theme.colors.text7,
+      color: 'var(--text7)',
     },
     plot: {
       // 98px is the height of titlebar
@@ -80,14 +80,14 @@ export const
               data={unpack(s.plot_data)}
               category={s.plot_category}
               value={s.plot_value}
-              color={theme.color(s.plot_color)}
+              color={cssVar(s.plot_color as any)}
               zeroValue={s.plot_zero_value}
             />
           ) : (
             <MicroArea
               data={unpack(s.plot_data)}
               value={s.plot_value}
-              color={theme.color(s.plot_color)}
+              color={cssVar(s.plot_color as any)}
               zeroValue={s.plot_zero_value}
               curve={s.plot_curve || 'linear'}
             />

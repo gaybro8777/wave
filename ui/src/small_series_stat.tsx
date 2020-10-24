@@ -16,7 +16,7 @@ import React from 'react'
 import { stylesheet } from 'typestyle'
 import { cards, Format } from './layout'
 import { bond, Card, unpack, F, Rec, S, Data } from './qd'
-import { getTheme } from './theme'
+import { getTheme, cssVar } from './theme'
 import { MicroBars } from './parts/microbars'
 import { MicroArea } from './parts/microarea'
 import * as Fluent from '@fluentui/react'
@@ -73,14 +73,14 @@ export const
               data={unpack(s.plot_data)}
               category={s.plot_category}
               value={s.plot_value}
-              color={theme.color(s.plot_color)}
+              color={cssVar(s.plot_color as any)}
               zeroValue={s.plot_zero_value}
             />
           ) : (
             <MicroArea
               data={unpack(s.plot_data)}
               value={s.plot_value}
-              color={theme.color(s.plot_color)}
+              color={cssVar(s.plot_color as any)}
               zeroValue={s.plot_zero_value}
               curve={s.plot_curve || 'linear'}
             />

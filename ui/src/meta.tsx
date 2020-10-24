@@ -17,6 +17,7 @@ import { cards } from './layout'
 import { showNotification } from './notification'
 import { bond, box, Card, qd, S, U } from './qd'
 import { Dialog } from './dialog'
+import { changeTheme } from './theme'
 
 /**
  * Represents the layout structure for a page.
@@ -92,12 +93,14 @@ interface State {
   layouts?: Layout[]
   /** Display a dialog on the page. */
   dialog?: Dialog
+  /** Specify a color theme for the app. Available values are 'light' | 'dark' | 'neon'. */
+  theme?: 'light' | 'dark' | 'neon'
 }
 
 export const
   layoutsB = box<Layout[]>([]),
   preload = ({ state }: Card<State>) => {
-    const { title, icon, refresh, notification, redirect, layouts, dialog } = state
+    const { title, icon, refresh, notification, redirect, layouts, dialog, theme } = state
 
     if (title) {
       delete state.title
@@ -121,6 +124,7 @@ export const
     // Force new obj reference to rerender Dialog component with most recent changes.
     qd.dialogB(dialog ? { ...dialog } : null)
 
+    changeTheme(theme || 'light')
     if (notification) {
       delete state.notification
       showNotification(notification)

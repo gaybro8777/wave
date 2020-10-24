@@ -18,7 +18,7 @@ import { stylesheet } from 'typestyle'
 import { cards, Format } from './layout'
 import { ProgressBar } from './parts/progress_bar'
 import { bond, Card, F, Rec, S, unpack } from './qd'
-import { getTheme } from './theme'
+import { cssVar, getTheme } from './theme'
 
 const
   theme = getTheme(),
@@ -32,15 +32,15 @@ const
       ...theme.font.w3,
     },
     aux_value: {
-      color: theme.colors.text7,
+      color: 'var(--text7)',
     },
     caption: {
       ...theme.font.s13,
-      color: theme.colors.text5,
+      color: 'var(--text5)',
     },
     captions: {
       ...theme.font.s12,
-      color: theme.colors.text7,
+      color: 'var(--text7)',
     },
   })
 
@@ -79,7 +79,7 @@ export const
               <div><Format data={data} format={s.value} /></div>
               <Format data={data} format={s.aux_value} className={css.aux_value} />
             </Fluent.Stack>
-            <ProgressBar thickness={2} color={theme.color(s.plot_color)} value={s.progress} />
+            <ProgressBar thickness={2} color={cssVar(s.plot_color as any)} value={s.progress} />
             <Fluent.Stack horizontal horizontalAlign='space-between' verticalAlign='baseline' className={css.captions}>
               <div><Format data={data} format={s.value_caption} /></div>
               <div><Format data={data} format={s.aux_value_caption} /></div>

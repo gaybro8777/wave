@@ -24,18 +24,17 @@ import { getTheme, displayMixin } from './theme'
 
 const
   theme = getTheme(),
-  hues = theme.colors,
   cat10 = [
-    hues.gray,
-    hues.blue,
-    hues.green,
-    hues.amber,
-    hues.tangerine,
-    hues.purple,
-    hues.cyan,
-    hues.mint,
-    hues.pink,
-    hues.brown,
+    'var(--gray)',
+    'var(--blue)',
+    'var(--green)',
+    'var(--amber)',
+    'var(--tangerine)',
+    'var(--purple)',
+    'var(--cyan)',
+    'var(--mint)',
+    'var(--pink)',
+    'var(--brown)',
   ]
 type AnnotationOption = ArcOption | LineOption | TextOption | RegionOption | DataMarkerOption | DataRegionOption
 
@@ -505,7 +504,7 @@ const
         o.color.callback = (x: S) => domain_colors[x]
       }
     } else {
-      o.color = isS(color) ? color : theme.colors.gray
+      o.color = isS(color) ? color : 'var(--gray)'
     }
     if (isS(shape_field)) {
       if (isS(shape_range)) {

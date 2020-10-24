@@ -14,9 +14,9 @@
 
 import * as Fluent from '@fluentui/react'
 import React from 'react'
-import { bond, S, B, U } from './qd'
 import { stylesheet } from 'typestyle'
-import { getTheme, rem, displayMixin } from './theme'
+import { B, bond, S, U } from './qd'
+import { displayMixin, rem } from './theme'
 
 /**
  * Create a step for a stepper.
@@ -46,11 +46,10 @@ export interface Stepper {
 }
 
 const
-  { colors } = getTheme(),
   css = stylesheet({
     stepNumber: {
-      background: colors.text,
-      color: colors.card,
+      background: 'var(--text)',
+      color: 'var(--card)',
       alignItems: 'center',
       borderRadius: '50%',
       display: 'inline-flex',
