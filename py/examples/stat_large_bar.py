@@ -1,5 +1,6 @@
 # Stat / Bar / Large
-# Create a large captioned card displaying a primary value, an auxiliary value and a progress bar, with captions for each value.
+# Create a large captioned card displaying a primary value,
+# an auxiliary value and a progress bar, with captions for each value.
 # ---
 import time
 
@@ -13,14 +14,14 @@ page = site['/demo']
 fake = Faker()
 f = FakePercent()
 val, pc = f.next()
-c = page.add(f'example', ui.large_bar_stat_card(
+c = page.add('example', ui.large_bar_stat_card(
     box='1 1 2 2',
     title=fake.cryptocurrency_name(),
     value='=${{intl foo minimum_fraction_digits=2 maximum_fraction_digits=2}}',
     value_caption='This Month',
     aux_value='={{intl bar style="percent" minimum_fraction_digits=2 maximum_fraction_digits=2}}',
     aux_value_caption='Previous Month',
-    plot_color='$red',
+    plot_color='red',
     progress=pc,
     data=dict(foo=val, bar=pc),
     caption=' '.join(fake.sentences(2)),

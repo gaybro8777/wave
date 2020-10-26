@@ -14,28 +14,29 @@
 // limitations under the License.
 
 import { Chart, registerInteraction } from '@antv/g2'
-import { AdjustOption, AnnotationPosition, ArcOption, CoordinateActions, CoordinateOption, DataMarkerOption, DataRegionOption, GeometryOption, LineOption, RegionOption, ScaleOption, TextOption, ChartCfg, AxisOption } from '@antv/g2/lib/interface'
+import { AdjustOption, AnnotationPosition, ArcOption, AxisOption, ChartCfg, CoordinateActions, CoordinateOption, DataMarkerOption, DataRegionOption, GeometryOption, LineOption, RegionOption, ScaleOption, TextOption } from '@antv/g2/lib/interface'
 import React from 'react'
 import { stylesheet } from 'typestyle'
 import { Fmt, parseFormat } from './intl'
 import { cards } from './layout'
-import { B, bond, Card, Dict, F, parseI, parseU, qd, Rec, S, unpack, V } from './qd'
-import { getTheme, displayMixin } from './theme'
+import { B, bond, Card, Dict, F, parseI, parseU, Rec, S, unpack, V, qd } from './qd'
+import { displayMixin, font } from './theme'
 
-const
-  theme = getTheme(),
+let
   cat10 = [
-    'var(--gray)',
-    'var(--blue)',
-    'var(--green)',
-    'var(--amber)',
-    'var(--tangerine)',
-    'var(--purple)',
-    'var(--cyan)',
-    'var(--mint)',
-    'var(--pink)',
-    'var(--brown)',
+    'gray',
+    'blue',
+    'green',
+    'amber',
+    'tangerine',
+    'purple',
+    'cyan',
+    'mint',
+    'pink',
+    'brown',
   ]
+
+
 type AnnotationOption = ArcOption | LineOption | TextOption | RegionOption | DataMarkerOption | DataRegionOption
 
 enum SpaceT { CC, DD, TT, CD, DC, TC, CT, TD, DT }
@@ -504,7 +505,7 @@ const
         o.color.callback = (x: S) => domain_colors[x]
       }
     } else {
-      o.color = isS(color) ? color : 'var(--gray)'
+      o.color = isS(color) ? color : getComputedStyle(document.documentElement).getPropertyValue('--gray').trim()
     }
     if (isS(shape_field)) {
       if (isS(shape_range)) {
@@ -723,8 +724,8 @@ const
 const
   css = stylesheet({
     title: {
-      ...theme.font.s12,
-      ...theme.font.w6,
+      ...font.s12,
+      ...font.w6,
     },
     plot: {
       position: 'absolute',
@@ -758,6 +759,8 @@ export const
     const
       container = React.createRef<HTMLDivElement>(),
       init = () => {
+        // Map CSS var colors to their hex values.
+        cat10 = cat10.map(c => getComputedStyle(document.documentElement).getPropertyValue(`--${c}`).trim())
         const el = container.current
         if (!el) return
         const

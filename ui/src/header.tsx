@@ -18,10 +18,9 @@ import { stylesheet } from 'typestyle'
 import { CardEffect, cards } from './layout'
 import { bond, Box, box, Card, S } from './qd'
 import { NavGroup, XNav } from './nav'
-import { getTheme, cssVar, clas } from './theme'
+import { font, cssVar, clas } from './theme'
 
 const
-  theme = getTheme(),
   iconSize = 24,
   css = stylesheet({
     card: {
@@ -53,13 +52,13 @@ const
       flexGrow: 1
     },
     title: {
-      ...theme.font.s24,
-      ...theme.font.w3,
+      ...font.s24,
+      ...font.w3,
     },
     subtitle: {
       position: 'relative',
       top: -5, // nudge up slightly to account for padding
-      ...theme.font.s12,
+      ...font.s12,
     },
   })
 

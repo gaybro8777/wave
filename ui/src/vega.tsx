@@ -17,17 +17,16 @@ import { stylesheet } from 'typestyle'
 import vegaEmbed from 'vega-embed'
 import { cards, grid } from './layout'
 import { bond, Card, Rec, S, unpack, xid, B } from './qd'
-import { getTheme, displayMixin, px } from './theme'
+import { font, displayMixin, px } from './theme'
 
 const
-  theme = getTheme(),
   css = stylesheet({
     card: {
       height: `calc(100% - ${px(2 * grid.gap)} )`,
     },
     title: {
-      ...theme.font.s12,
-      ...theme.font.w6,
+      ...font.s12,
+      ...font.w6,
     },
     plot: {
       position: 'relative',

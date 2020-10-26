@@ -17,18 +17,17 @@ import React from 'react'
 import { stylesheet } from 'typestyle'
 import { cards, Format } from './layout'
 import { bond, Card, Rec, S, unpack } from './qd'
-import { getTheme } from './theme'
+import { font } from './theme'
 
 const
-  theme = getTheme(),
   css = stylesheet({
     title: {
-      ...theme.font.s12,
-      ...theme.font.w6,
+      ...font.s12,
+      ...font.w6,
     },
     value: {
-      ...theme.font.s24,
-      ...theme.font.w3,
+      ...font.s24,
+      ...font.w3,
     }
   })
 

@@ -18,25 +18,24 @@ import { stylesheet } from 'typestyle'
 import { cards, Format } from './layout'
 import { ProgressArc } from './parts/progress_arc'
 import { bond, Card, F, Rec, S, unpack } from './qd'
-import { getTheme, cssVar } from './theme'
+import { cssVar, font } from './theme'
 
 const
-  theme = getTheme(),
   css = stylesheet({
     title: {
-      ...theme.font.s12,
-      ...theme.font.w6,
+      ...font.s12,
+      ...font.w6,
     },
     value_overlay: {
       position: 'absolute',
       top: 0, right: 0, bottom: 0, left: 0,
     },
     value: {
-      ...theme.font.s24,
-      ...theme.font.w3,
+      ...font.s24,
+      ...font.w3,
     },
     aux_value: {
-      ...theme.font.s12,
+      ...font.s12,
       color: 'var(--text7)',
     },
   })

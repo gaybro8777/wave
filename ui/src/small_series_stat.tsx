@@ -16,20 +16,19 @@ import React from 'react'
 import { stylesheet } from 'typestyle'
 import { cards, Format } from './layout'
 import { bond, Card, unpack, F, Rec, S, Data } from './qd'
-import { getTheme, cssVar } from './theme'
+import { font, cssVar } from './theme'
 import { MicroBars } from './parts/microbars'
 import { MicroArea } from './parts/microarea'
 import * as Fluent from '@fluentui/react'
 
 const
-  theme = getTheme(),
   css = stylesheet({
     title: {
-      ...theme.font.s12,
-      ...theme.font.w6,
+      ...font.s12,
+      ...font.w6,
     },
     value: {
-      ...theme.font.s12,
+      ...font.s12,
     },
     plot: {
       // 30px top/bottom padding + 17px line height of the title.

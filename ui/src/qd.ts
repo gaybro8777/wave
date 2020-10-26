@@ -732,6 +732,7 @@ export interface Qd {
   readonly events: Dict<any>
   readonly refreshRateB: Box<U>
   readonly busyB: Box<B>
+  theme: Box<S>
   socket: WebSocket | null
   dialogB: Box<Dialog | null>
   page(): PageRef
@@ -752,6 +753,7 @@ export const qd: Qd = {
   busyB: box(false),
   socket: null,
   dialogB: box(null),
+  theme: box('light'),
   page: (path?: S): PageRef => {
     path = path || qd.path
     const
@@ -868,4 +870,3 @@ const
   }
 
 export const connect = (path: S, handle: SockHandler) => reconnect(toSocketAddress(path), handle)
-

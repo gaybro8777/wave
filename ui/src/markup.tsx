@@ -16,18 +16,17 @@ import React from 'react'
 import { stylesheet } from 'typestyle'
 import { cards } from './layout'
 import { bond, Card, S, B } from './qd'
-import { getTheme, displayMixin } from './theme'
+import { font, displayMixin } from './theme'
 
 const
-  theme = getTheme(),
   css = stylesheet({
     titledCard: {},
     untitledCard: {
       display: 'absolute', left: 0, top: 0, right: 0, bottom: 0,
     },
     title: {
-      ...theme.font.s12,
-      ...theme.font.w6,
+      ...font.s12,
+      ...font.w6,
     },
   })
 

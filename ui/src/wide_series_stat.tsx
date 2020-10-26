@@ -19,21 +19,21 @@ import { cards, Format, grid } from './layout'
 import { MicroArea } from './parts/microarea'
 import { MicroBars } from './parts/microbars'
 import { bond, Card, Data, F, Rec, S, unpack } from './qd'
-import { cssVar, getTheme } from './theme'
+import { cssVar, font } from './theme'
 
 const
-  theme = getTheme(),
   css = stylesheet({
     title: {
-      ...theme.font.s12,
-      ...theme.font.w6,
+      ...font.s12,
+      ...font.w6,
     },
     value: {
-      ...theme.font.s24,
-      ...theme.font.w3,
+      ...font.s24,
+      ...font.w3,
     },
     aux_value: {
-      ...theme.font.s13,
+      flexGrow: 1,
+      ...font.s13,
       color: 'var(--text7)',
     }
   })

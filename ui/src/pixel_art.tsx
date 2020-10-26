@@ -16,7 +16,7 @@ import React from 'react'
 import { stylesheet } from 'typestyle'
 import { cards } from './layout'
 import { bond, Card, unpack, Rec, S, qd, U } from './qd'
-import { getTheme } from './theme'
+import { font } from './theme'
 
 const
   pixelSize = 20,
@@ -24,15 +24,14 @@ const
   palette = '#ffffff #bfbfbf #808080 #404040 #000000 #6699ff #3366cc #003399 #99cc33 #00cc00 #669900 #ffcc00 #ff9900 #ff6600 #cc0000'.split(/\s+/g)
 
 const
-  theme = getTheme(),
   css = stylesheet({
     card: {
       display: 'flex',
       flexDirection: 'column',
     },
     title: {
-      ...theme.font.s12,
-      ...theme.font.w6,
+      ...font.s12,
+      ...font.w6,
     },
     canvas: {
       display: 'flex', flexWrap: 'wrap',

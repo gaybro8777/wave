@@ -13,7 +13,7 @@ page = site['/demo']
 fake = Faker()
 f = FakeCategoricalSeries()
 cat, val, pc = f.next()
-c = page.add(f'example', ui.tall_series_stat_card(
+c = page.add('example', ui.tall_series_stat_card(
     box='1 1 1 2',
     title=fake.cryptocurrency_name(),
     value='=${{intl qux minimum_fraction_digits=2 maximum_fraction_digits=2}}',
@@ -22,7 +22,7 @@ c = page.add(f'example', ui.tall_series_stat_card(
     plot_category='foo',
     plot_type='interval',
     plot_value='qux',
-    plot_color='$red',
+    plot_color='red',
     plot_data=data('foo qux', -20),
     plot_zero_value=0,
 ))
