@@ -68,7 +68,7 @@ export const
       return (
         <Fluent.Stack horizontal data-test={name} style={{ position: 'static', padding: 15, height: '100%' }}>
           <Fluent.StackItem grow={1} styles={{ root: { position: 'relative' } }}>
-            <ProgressArc thickness={2} color={cssVar(s.plot_color as any)} value={s.progress} />
+            <ProgressArc thickness={2} color={cssVar(s.plot_color)} value={s.progress} />
             <Fluent.Stack horizontalAlign='center' verticalAlign='center' className={css.percentContainer}>
               <div className={css.percent}>{`${Math.round(s.progress * 100)}%`}</div>
             </Fluent.Stack>
