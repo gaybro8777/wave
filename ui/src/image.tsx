@@ -16,17 +16,12 @@ import React from 'react'
 import { stylesheet } from 'typestyle'
 import { cards, Format } from './layout'
 import { bond, Card, Rec, S } from './qd'
-import { font } from './theme'
 
 const
   css = stylesheet({
     card: {
       display: 'flex',
       flexDirection: 'column',
-    },
-    title: {
-      ...font.s12,
-      ...font.w6,
     },
     img: {
       flexGrow: 1,
@@ -51,13 +46,12 @@ export const
   View = bond(({ name, state: s, changed }: Card<State>) => {
     const render = () => (
       <div data-test={name} className={css.card}>
-        <Format data={s.data} format={s.title} className={css.title} />
+        <Format data={s.data} format={s.title} className='s12 w6' />
         <img className={css.img} alt={s.title} src={`data:image/${s.type};base64,${s.image}`} />
-      </div>
+      </div >
     )
 
     return { render, changed }
   })
 
 cards.register('image', View)
-

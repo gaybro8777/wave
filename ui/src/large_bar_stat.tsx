@@ -18,27 +18,17 @@ import { stylesheet } from 'typestyle'
 import { cards, Format } from './layout'
 import { ProgressBar } from './parts/progress_bar'
 import { bond, Card, F, Rec, S, unpack } from './qd'
-import { cssVar, font } from './theme'
+import { clas, cssVar } from './theme'
 
 const
   css = stylesheet({
-    title: {
-      ...font.s12,
-      ...font.w6,
-    },
-    values: {
-      ...font.s18,
-      ...font.w3,
-    },
     aux_value: {
       color: 'var(--text7)',
     },
     caption: {
-      ...font.s13,
       color: 'var(--text5)',
     },
     captions: {
-      ...font.s12,
       color: 'var(--text7)',
     },
   })
@@ -71,15 +61,15 @@ export const
       const data = unpack(s.data)
       return (
         <Fluent.Stack data-test={name} verticalAlign='space-between'>
-          <Format data={data} format={s.title} className={css.title} />
-          <Format data={data} format={s.caption} className={css.caption} />
+          <Format data={data} format={s.title} className='s12 w6' />
+          <Format data={data} format={s.caption} className={clas(css.caption, 's13')} />
           <div>
-            <Fluent.Stack horizontal horizontalAlign='space-between' verticalAlign='baseline' className={css.values}>
+            <Fluent.Stack horizontal horizontalAlign='space-between' verticalAlign='baseline' className='s18 w3'>
               <div><Format data={data} format={s.value} /></div>
               <Format data={data} format={s.aux_value} className={css.aux_value} />
             </Fluent.Stack>
-            <ProgressBar thickness={2} color={cssVar(s.plot_color as any)} value={s.progress} />
-            <Fluent.Stack horizontal horizontalAlign='space-between' verticalAlign='baseline' className={css.captions}>
+            <ProgressBar thickness={2} color={cssVar(s.plot_color)} value={s.progress} />
+            <Fluent.Stack horizontal horizontalAlign='space-between' verticalAlign='baseline' className={clas(css.captions, 's12')}>
               <div><Format data={data} format={s.value_caption} /></div>
               <div><Format data={data} format={s.aux_value_caption} /></div>
             </Fluent.Stack>

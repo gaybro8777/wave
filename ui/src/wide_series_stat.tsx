@@ -19,21 +19,12 @@ import { cards, Format, grid } from './layout'
 import { MicroArea } from './parts/microarea'
 import { MicroBars } from './parts/microbars'
 import { bond, Card, Data, F, Rec, S, unpack } from './qd'
-import { cssVar, font } from './theme'
+import { clas, cssVar } from './theme'
 
 const
   css = stylesheet({
-    title: {
-      ...font.s12,
-      ...font.w6,
-    },
-    value: {
-      ...font.s24,
-      ...font.w3,
-    },
     aux_value: {
       flexGrow: 1,
-      ...font.s13,
       color: 'var(--text7)',
     }
   })
@@ -92,10 +83,10 @@ export const
         <Fluent.Stack data-test={name} horizontal styles={{ root: { height: '100%' } }} style={{ position: 'static' }} >
           <Fluent.StackItem grow={1} tokens={{ padding: 15 }}>{plot}</Fluent.StackItem>
           <Fluent.StackItem styles={{ root: { padding: grid.gap, minWidth: 120 } }}>
-            <Format data={data} format={s.title} className={css.title} />
+            <Format data={data} format={s.title} className='s12 w6' />
             <Fluent.Stack horizontal verticalAlign='baseline' tokens={{ childrenGap: 5 }}>
-              <Format data={data} format={s.value} className={css.value} />
-              <Format data={data} format={s.aux_value} className={css.aux_value} />
+              <Format data={data} format={s.value} className='s12 w3' />
+              <Format data={data} format={s.aux_value} className={clas(css.aux_value, 's13')} />
             </Fluent.Stack>
           </Fluent.StackItem>
         </Fluent.Stack>

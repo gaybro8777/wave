@@ -18,20 +18,11 @@ import { stylesheet } from 'typestyle'
 import { cards, Format } from './layout'
 import { ProgressBar } from './parts/progress_bar'
 import { bond, Card, F, Rec, S, unpack } from './qd'
-import { font, cssVar } from './theme'
+import { clas, cssVar } from './theme'
 
 const
   css = stylesheet({
-    title: {
-      ...font.s12,
-      ...font.w6,
-    },
-    value: {
-      ...font.s18,
-      ...font.w3,
-    },
     aux_value: {
-      ...font.s13,
       color: cssVar('text7'),
     }
   })
@@ -58,11 +49,11 @@ export const
       const data = unpack(s.data)
       return (
         <Fluent.Stack data-test={name} style={{ position: 'static', padding: 15, height: '100%' }}>
-          <Format data={data} format={s.title} className={css.title} />
+          <Format data={data} format={s.title} className='s12 w6' />
           <Fluent.StackItem grow={1}>
             <Fluent.Stack horizontal verticalAlign='baseline' tokens={{ childrenGap: 5 }}>
-              <Format data={data} format={s.value} className={css.value} />
-              <Format data={data} format={s.aux_value} className={css.aux_value} />
+              <Format data={data} format={s.value} className='s18 w3' />
+              <Format data={data} format={s.aux_value} className={clas(css.aux_value, 's13')} />
             </Fluent.Stack>
             <ProgressBar thickness={2} color={cssVar(s.plot_color)} value={s.progress} />
           </Fluent.StackItem>

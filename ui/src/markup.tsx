@@ -16,17 +16,13 @@ import React from 'react'
 import { stylesheet } from 'typestyle'
 import { cards } from './layout'
 import { bond, Card, S, B } from './qd'
-import { font, displayMixin } from './theme'
+import { displayMixin } from './theme'
 
 const
   css = stylesheet({
     titledCard: {},
     untitledCard: {
       display: 'absolute', left: 0, top: 0, right: 0, bottom: 0,
-    },
-    title: {
-      ...font.s12,
-      ...font.w6,
     },
   })
 
@@ -54,7 +50,7 @@ export const
   ),
   MarkupCard = ({ name, title, content }: { name: S, title: S, content: S }) => (
     <div data-test={name} className={title ? css.titledCard : css.untitledCard}>
-      {title && <div className={css.title}>{title}</div>}
+      {title && <div className='s12 w6'>{title}</div>}
       <XMarkup model={{ content }} />
     </div>
   ),

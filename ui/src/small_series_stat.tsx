@@ -16,20 +16,13 @@ import React from 'react'
 import { stylesheet } from 'typestyle'
 import { cards, Format } from './layout'
 import { bond, Card, unpack, F, Rec, S, Data } from './qd'
-import { font, cssVar } from './theme'
+import { cssVar } from './theme'
 import { MicroBars } from './parts/microbars'
 import { MicroArea } from './parts/microarea'
 import * as Fluent from '@fluentui/react'
 
 const
   css = stylesheet({
-    title: {
-      ...font.s12,
-      ...font.w6,
-    },
-    value: {
-      ...font.s12,
-    },
     plot: {
       // 30px top/bottom padding + 17px line height of the title.
       height: 'calc(100% - 47px)',
@@ -87,8 +80,8 @@ export const
       return (
         <Fluent.Stack data-test={name} style={{ position: 'static', height: '100%' }}>
           <Fluent.Stack horizontal horizontalAlign='space-between' padding={15}>
-            <Format data={data} format={s.title || 'Untitled'} className={css.title} />
-            <Format data={data} format={s.value} className={css.value} />
+            <Format data={data} format={s.title || 'Untitled'} className='s12 w6' />
+            <Format data={data} format={s.value} className='s12' />
           </Fluent.Stack>
           <div className={css.plot}>{plot}</div>
         </Fluent.Stack>

@@ -18,7 +18,7 @@ import { stylesheet } from 'typestyle'
 import { CardEffect, cards } from './layout'
 import { bond, Box, box, Card, S } from './qd'
 import { NavGroup, XNav } from './nav'
-import { font, cssVar, clas } from './theme'
+import { cssVar, clas } from './theme'
 
 const
   iconSize = 24,
@@ -51,14 +51,9 @@ const
     rhs: {
       flexGrow: 1
     },
-    title: {
-      ...font.s24,
-      ...font.w3,
-    },
     subtitle: {
       position: 'relative',
       top: -5, // nudge up slightly to account for padding
-      ...font.s12,
     },
   })
 
@@ -122,8 +117,8 @@ export const
           <div data-test={name} className={css.card}>
             {burger}
             <div className={css.rhs}>
-              <div className={css.title}>{title}</div>
-              <div className={css.subtitle}>{subtitle}</div>
+              <div className='s24 w6'>{title}</div>
+              <div className={clas(css.subtitle, 's12')}>{subtitle}</div>
             </div>
             {nav && <Navigation items={nav} isOpenB={navB} />}
           </div>

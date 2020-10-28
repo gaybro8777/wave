@@ -18,7 +18,7 @@ import { stylesheet } from 'typestyle'
 import { cards, Format } from './layout'
 import { ProgressArc } from './parts/progress_arc'
 import { bond, Card, F, Rec, S, unpack } from './qd'
-import { cssVar, font } from './theme'
+import { clas, cssVar } from './theme'
 
 const
   css = stylesheet({
@@ -27,20 +27,12 @@ const
       top: 0, right: 0, bottom: 0, left: 0,
     },
     percent: {
-      ...font.s12,
       opacity: 0.5,
     },
     title: {
-      ...font.s12,
-      ...font.w6,
       overflow: 'visible'
     },
-    value: {
-      ...font.s24,
-      ...font.w3,
-    },
     aux_value: {
-      ...font.s13,
       color: 'var(--text7)',
     }
   })
@@ -74,10 +66,10 @@ export const
             </Fluent.Stack>
           </Fluent.StackItem>
           <Fluent.Stack styles={{ root: { minWidth: 150 } }}>
-            <Format data={data} format={s.title} className={css.title} />
+            <Format data={data} format={s.title} className='s12 w6' />
             <Fluent.Stack verticalAlign='baseline' horizontal tokens={{ childrenGap: 5 }}>
-              <Format data={data} format={s.value} className={css.value} />
-              <Format data={data} format={s.aux_value} className={css.aux_value} />
+              <Format data={data} format={s.value} className='s24 w3' />
+              <Format data={data} format={s.aux_value} className={clas(css.aux_value, 's13')} />
             </Fluent.Stack>
           </Fluent.Stack>
         </Fluent.Stack>

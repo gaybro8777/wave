@@ -14,22 +14,8 @@
 
 import * as Fluent from '@fluentui/react'
 import React from 'react'
-import { stylesheet } from 'typestyle'
 import { cards, Format } from './layout'
 import { bond, Card, Rec, S, unpack } from './qd'
-import { font } from './theme'
-
-const
-  css = stylesheet({
-    title: {
-      ...font.s12,
-      ...font.w6,
-    },
-    value: {
-      ...font.s24,
-      ...font.w3,
-    }
-  })
 
 /** Create a stat card displaying a single value. */
 interface State {
@@ -47,8 +33,8 @@ export const
       const data = unpack(s.data)
       return (
         <Fluent.Stack data-test={name}>
-          <Format data={data} format={s.title} className={css.title} />
-          <Format data={data} format={s.value} className={css.value} />
+          <Format data={data} format={s.title} className='s12 w6' />
+          <Format data={data} format={s.value} className='s24 w3' />
         </Fluent.Stack>
       )
     }

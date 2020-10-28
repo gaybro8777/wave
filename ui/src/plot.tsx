@@ -19,8 +19,8 @@ import React from 'react'
 import { stylesheet } from 'typestyle'
 import { Fmt, parseFormat } from './intl'
 import { cards } from './layout'
-import { B, bond, Card, Dict, F, parseI, parseU, Rec, S, unpack, V, qd } from './qd'
-import { displayMixin, font } from './theme'
+import { B, bond, Card, Dict, F, parseI, parseU, qd, Rec, S, unpack, V } from './qd'
+import { displayMixin } from './theme'
 
 let
   cat10 = [
@@ -723,10 +723,6 @@ const
 
 const
   css = stylesheet({
-    title: {
-      ...font.s12,
-      ...font.w6,
-    },
     plot: {
       position: 'absolute',
       left: 0, top: 30, right: 0, bottom: 0,
@@ -835,8 +831,8 @@ export const
       render = () => {
         const { title, plot, data, events } = state
         return (
-          <div>
-            <div className={css.title}>{title || 'Untitled'}</div>
+          <div data-test={name}>
+            <div >{title || 'Untitled'}</div>
             <div className={css.plot}>
               <XVisualization model={{ name, plot, data, width: 'auto', height: 'auto', events }} />
             </div>
@@ -847,4 +843,3 @@ export const
   })
 
 cards.register('plot', View)
-

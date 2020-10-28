@@ -18,24 +18,15 @@ import { stylesheet } from 'typestyle'
 import { cards, Format } from './layout'
 import { ProgressArc } from './parts/progress_arc'
 import { bond, Card, F, Rec, S, unpack } from './qd'
-import { cssVar, font } from './theme'
+import { clas, cssVar } from './theme'
 
 const
   css = stylesheet({
-    title: {
-      ...font.s12,
-      ...font.w6,
-    },
     value_overlay: {
       position: 'absolute',
       top: 0, right: 0, bottom: 0, left: 0,
     },
-    value: {
-      ...font.s24,
-      ...font.w3,
-    },
     aux_value: {
-      ...font.s12,
       color: 'var(--text7)',
     },
   })
@@ -62,12 +53,12 @@ export const
       const data = unpack(s.data)
       return (
         <Fluent.Stack data-test={name} style={{ position: 'static', padding: 15, height: '100%' }}>
-          <Format data={data} format={s.title} className={css.title} />
+          <Format data={data} format={s.title} className='s12 w6' />
           <Fluent.StackItem grow={1} styles={{ root: { position: 'relative', height: 'calc(100% - 17px)' } }}>
             <ProgressArc thickness={2} color={cssVar(s.plot_color)} value={s.progress} />
             <Fluent.Stack className={css.value_overlay} horizontalAlign='center' verticalAlign='center'>
-              <Format data={data} format={s.value} className={css.value} />
-              <Format data={data} format={s.aux_value} className={css.aux_value} />
+              <Format data={data} format={s.value} className='s24 w3' />
+              <Format data={data} format={s.aux_value} className={clas(css.aux_value, 's12')} />
             </Fluent.Stack>
           </Fluent.StackItem>
         </Fluent.Stack>
