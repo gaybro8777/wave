@@ -39,7 +39,6 @@ def rnd(): return random.randint(1, 100)
 
 @app('/demo')
 async def serve(q: Q):
-    q.page['meta'] = ui.meta_card(box='', theme='neon')
     q.page['example'] = ui.form_card(box='1 1 4 10', items=[
         ui.text_xl(content='Extra-large text, for headings.'),
         ui.text_l(content='Large text, for sub-headings.'),
