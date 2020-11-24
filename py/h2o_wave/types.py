@@ -5545,8 +5545,17 @@ class Dialog:
         )
 
 
+class MetaCardTheme:
+    LIGHT = 'light'
+    DARK = 'dark'
+    NEON = 'neon'
+
+
 class MetaCard:
-    """No documentation available.
+    """Represents page-global state.
+
+    This card is invisible.
+    It is used to control attributes of the active page.
     """
     def __init__(
             self,
@@ -5558,6 +5567,7 @@ class MetaCard:
             icon: Optional[str] = None,
             layouts: Optional[List[Layout]] = None,
             dialog: Optional[Dialog] = None,
+            theme: Optional[str] = None,
             commands: Optional[List[Command]] = None,
     ):
         self.box = box
@@ -5571,11 +5581,13 @@ class MetaCard:
         self.redirect = redirect
         """Redirect the page to a new URL."""
         self.icon = icon
-        """No documentation available."""
+        """Shortcut icon path. Preferably a `.png` file (`.ico` files may not work in mobile browsers)."""
         self.layouts = layouts
         """The layouts supported by this page."""
         self.dialog = dialog
         """Display a dialog on the page."""
+        self.theme = theme
+        """Specify a color theme for the app. Available values are 'light' | 'dark' | 'neon'. One of 'light', 'dark', 'neon'. See enum h2o_wave.ui.MetaCardTheme."""
         self.commands = commands
         """Contextual menu commands for this component."""
 
@@ -5593,6 +5605,7 @@ class MetaCard:
             icon=self.icon,
             layouts=None if self.layouts is None else [__e.dump() for __e in self.layouts],
             dialog=None if self.dialog is None else self.dialog.dump(),
+            theme=self.theme,
             commands=None if self.commands is None else [__e.dump() for __e in self.commands],
         )
 
@@ -5609,6 +5622,7 @@ class MetaCard:
         __d_icon: Any = __d.get('icon')
         __d_layouts: Any = __d.get('layouts')
         __d_dialog: Any = __d.get('dialog')
+        __d_theme: Any = __d.get('theme')
         __d_commands: Any = __d.get('commands')
         box: str = __d_box
         title: Optional[str] = __d_title
@@ -5618,6 +5632,7 @@ class MetaCard:
         icon: Optional[str] = __d_icon
         layouts: Optional[List[Layout]] = None if __d_layouts is None else [Layout.load(__e) for __e in __d_layouts]
         dialog: Optional[Dialog] = None if __d_dialog is None else Dialog.load(__d_dialog)
+        theme: Optional[str] = __d_theme
         commands: Optional[List[Command]] = None if __d_commands is None else [Command.load(__e) for __e in __d_commands]
         return MetaCard(
             box,
@@ -5628,6 +5643,7 @@ class MetaCard:
             icon,
             layouts,
             dialog,
+            theme,
             commands,
         )
 

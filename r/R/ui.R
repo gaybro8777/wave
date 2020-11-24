@@ -2652,16 +2652,21 @@ ui_dialog <- function(
   return(.o)
 }
 
-#' No documentation available.
+#' Represents page-global state.
+#' 
+#' This card is invisible.
+#' It is used to control attributes of the active page.
 #'
 #' @param box A string indicating how to place this component on the page.
 #' @param title The title of the page.
 #' @param refresh Refresh rate in seconds. A value of 0 turns off live-updates. Values != 0 are currently ignored (reserved for future use).
 #' @param notification Display a desktop notification.
 #' @param redirect Redirect the page to a new URL.
-#' @param icon No documentation available.
+#' @param icon Shortcut icon path. Preferably a `.png` file (`.ico` files may not work in mobile browsers).
 #' @param layouts The layouts supported by this page.
 #' @param dialog Display a dialog on the page.
+#' @param theme Specify a color theme for the app. Available values are 'light' | 'dark' | 'neon'.
+#'   One of 'light', 'dark', 'neon'. See enum h2o_wave.ui.MetaCardTheme.
 #' @param commands Contextual menu commands for this component.
 #' @return A MetaCard instance.
 ui_meta_card <- function(
@@ -2673,6 +2678,7 @@ ui_meta_card <- function(
   icon = NULL,
   layouts = NULL,
   dialog = NULL,
+  theme = NULL,
   commands = NULL) {
   .guard_scalar("box", "character", box)
   .guard_scalar("title", "character", title)
@@ -2682,6 +2688,7 @@ ui_meta_card <- function(
   .guard_scalar("icon", "character", icon)
   .guard_vector("layouts", "h2oq_Layout", layouts)
   .guard_scalar("dialog", "h2oq_Dialog", dialog)
+  # TODO Validate theme
   .guard_vector("commands", "h2oq_Command", commands)
   .o <- list(
     box=box,
@@ -2692,6 +2699,7 @@ ui_meta_card <- function(
     icon=icon,
     layouts=layouts,
     dialog=dialog,
+    theme=theme,
     commands=commands)
   class(.o) <- append(class(.o), c(.h2oq_obj, "h2oq_MetaCard"))
   return(.o)
