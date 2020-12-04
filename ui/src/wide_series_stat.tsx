@@ -24,7 +24,6 @@ import { clas, cssVar } from './theme'
 const
   css = stylesheet({
     aux_value: {
-      flexGrow: 1,
       color: 'var(--text7)',
     }
   })
@@ -85,7 +84,7 @@ export const
           <Fluent.StackItem styles={{ root: { padding: grid.gap, minWidth: 120 } }}>
             <Format data={data} format={s.title} className='s12 w6' />
             <Fluent.Stack horizontal verticalAlign='baseline' tokens={{ childrenGap: 5 }}>
-              <Format data={data} format={s.value} className='s12 w3' />
+              <Format data={data} format={s.value} className='s24 w3' />
               <Format data={data} format={s.aux_value} className={clas(css.aux_value, 's13')} />
             </Fluent.Stack>
           </Fluent.StackItem>
