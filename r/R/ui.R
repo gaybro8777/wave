@@ -2666,7 +2666,6 @@ ui_dialog <- function(
 #' @param layouts The layouts supported by this page.
 #' @param dialog Display a dialog on the page.
 #' @param theme Specify a color theme for the app. Available values are 'light' | 'dark' | 'neon'.
-#'   One of 'light', 'dark', 'neon'. See enum h2o_wave.ui.MetaCardTheme.
 #' @param commands Contextual menu commands for this component.
 #' @return A MetaCard instance.
 ui_meta_card <- function(
@@ -2688,7 +2687,7 @@ ui_meta_card <- function(
   .guard_scalar("icon", "character", icon)
   .guard_vector("layouts", "h2oq_Layout", layouts)
   .guard_scalar("dialog", "h2oq_Dialog", dialog)
-  # TODO Validate theme
+  .guard_scalar("theme", "character", theme)
   .guard_vector("commands", "h2oq_Command", commands)
   .o <- list(
     box=box,

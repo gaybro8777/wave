@@ -5545,12 +5545,6 @@ class Dialog:
         )
 
 
-class MetaCardTheme:
-    LIGHT = 'light'
-    DARK = 'dark'
-    NEON = 'neon'
-
-
 class MetaCard:
     """Represents page-global state.
 
@@ -5587,7 +5581,7 @@ class MetaCard:
         self.dialog = dialog
         """Display a dialog on the page."""
         self.theme = theme
-        """Specify a color theme for the app. Available values are 'light' | 'dark' | 'neon'. One of 'light', 'dark', 'neon'. See enum h2o_wave.ui.MetaCardTheme."""
+        """Specify a color theme for the app. Available values are 'light' | 'dark' | 'neon'."""
         self.commands = commands
         """Contextual menu commands for this component."""
 
