@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Breadcrumb } from '@fluentui/react'
+import * as Fluent from '@fluentui/react'
 import React from 'react'
 import { cards } from './layout'
 import { bond, Card, S, qd } from './qd'
@@ -54,7 +54,11 @@ export const
         }
       }
       )),
-      render = () => <Breadcrumb data-test={name} items={items} />
+      render = () => (
+        <Fluent.Stack verticalAlign='center'>
+          <Fluent.Breadcrumb data-test={name} items={items} styles={{ root: { margin: 0 } }} />
+        </Fluent.Stack>
+      )
 
     return { render, changed }
   })
