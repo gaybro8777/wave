@@ -1973,6 +1973,7 @@ def header_card(
         icon: Optional[str] = None,
         icon_color: Optional[str] = None,
         nav: Optional[List[NavGroup]] = None,
+        items: Optional[List[Command]] = None,
         commands: Optional[List[Command]] = None,
 ) -> HeaderCard:
     """Render a card containing a HTML page inside an inline frame (iframe).
@@ -1986,6 +1987,7 @@ def header_card(
         icon: The icon type, displayed to the left.
         icon_color: The icon's color.
         nav: The navigation menu to display when the header's icon is clicked.
+        items: Items that should be displayed on the right side of the header.
         commands: Contextual menu commands for this component.
     Returns:
         A `h2o_wave.types.HeaderCard` instance.
@@ -1997,6 +1999,7 @@ def header_card(
         icon,
         icon_color,
         nav,
+        items,
         commands,
     )
 

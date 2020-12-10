@@ -1,5 +1,6 @@
-import { CommandBar, IButtonProps, ICommandBarItemProps } from '@fluentui/react'
+import * as Fluent from '@fluentui/react'
 import React from 'react'
+import { stylesheet } from 'typestyle'
 import { CardEffect, cards } from './layout'
 import { bond, Card, qd, S } from './qd'
 
@@ -37,12 +38,20 @@ interface State {
 }
 
 const
-  overflowProps: IButtonProps = { ariaLabel: 'More' },
-  toCommands = (commands: Command[]) => commands.map(toCommand),
-  toCommand = ({ name, label, caption, icon, items }: Command): ICommandBarItemProps => {
+  css = stylesheet({
+    commandBar: {
+      $nest: {
+        '.ms-Button--commandBar, .ms-Button-icon, .ms-Button-menuIcon, .ms-CommandBar, &:hover': {
+          background: 'inherit',
+          color: 'inherit'
+        }
+      }
+    }
+  }),
+  toCommands = (commands: Command[]) => commands.map(({ name, label, caption, icon, items }: Command): Fluent.ICommandBarItemProps => {
     qd.args[name] = false
     const onClick = () => {
-      if (name[0] === '#') {
+      if (name.startsWith('#')) {
         window.location.hash = name.substr(1)
         return
       }
@@ -59,7 +68,7 @@ const
       subMenuProps: items ? { items: toCommands(items) } : undefined,
       onClick,
     }
-  }
+  })
 
 export const
   View = bond(({ name, state, changed }: Card<State>) => {
@@ -71,21 +80,18 @@ export const
           overflowCommands = overflow_items ? toCommands(overflow_items) : undefined,
           farCommands = secondary_items ? toCommands(secondary_items) : undefined
         return (
-          <div>
-            <CommandBar
-              data-test={name}
-              items={commands}
-              overflowItems={overflowCommands}
-              overflowButtonProps={overflowProps}
-              farItems={farCommands}
-              ariaLabel='Use left and right arrow keys to navigate between commands.'
-            />
-          </div>
+          <Fluent.CommandBar
+            data-test={name}
+            items={commands}
+            overflowItems={overflowCommands}
+            overflowButtonProps={{ ariaLabel: 'More' }}
+            farItems={farCommands}
+            ariaLabel='Use left and right arrow keys to navigate between commands.'
+            className={css.commandBar}
+          />
         )
       }
     return { render, changed }
   })
 
 cards.register('toolbar', View, CardEffect.Flat)
-
-

@@ -1,25 +1,19 @@
-import { FontIcon, Panel, PanelType } from '@fluentui/react'
+import * as Fluent from '@fluentui/react'
 import React from 'react'
 import { stylesheet } from 'typestyle'
-import { CardEffect, cards } from './layout'
-import { bond, Box, box, Card, S } from './qd'
-import { clas, getTheme } from './theme'
+import { cards, CardEffect } from './layout'
 import { NavGroup, XNav } from './nav'
+import { bond, Box, box, Card, S, B } from './qd'
+import { clas, getTheme } from './theme'
+import { Command, View as Toolbar } from './toolbar'
 
 const
   theme = getTheme(),
   iconSize = 24,
   css = stylesheet({
-    card: {
-      position: 'absolute', left: 0, top: 0, right: 0, bottom: 0,
-      display: 'flex',
-      alignItems: 'center',
-    },
     lhs: {
       width: iconSize + 15,
       height: iconSize + 15,
-      display: 'flex',
-      alignItems: 'center',
       cursor: 'default',
     },
     burger: {
@@ -34,9 +28,6 @@ const
       fontSize: iconSize,
       height: iconSize,
       width: iconSize,
-    },
-    rhs: {
-      flexGrow: 1
     },
     title: {
       ...theme.font.s24,
@@ -66,22 +57,24 @@ interface State {
   icon_color?: S
   /** The navigation menu to display when the header's icon is clicked. */
   nav?: NavGroup[]
+  /** Items that should be displayed on the right side of the header. */
+  items?: Command[]
 }
 
 const
-  Navigation = bond(({ items, isOpenB }: { items: NavGroup[], isOpenB: Box<boolean> }) => {
+  Navigation = bond(({ items, isOpenB }: { items: NavGroup[], isOpenB: Box<B> }) => {
     const
       hideNav = () => isOpenB(false),
       render = () => (
-        <Panel
+        <Fluent.Panel
           isLightDismiss
-          type={PanelType.smallFixedNear}
+          type={Fluent.PanelType.smallFixedNear}
           isOpen={isOpenB()}
           onDismiss={hideNav}
           hasCloseButton={false}
         >
           <XNav items={items} />
-        </Panel>
+        </Fluent.Panel>
       )
     return { render, isOpenB }
   })
@@ -93,32 +86,31 @@ export const
       showNav = () => navB(true),
       render = () => {
         const
-          { title, subtitle, icon, icon_color, nav } = state,
+          { title, subtitle, icon, icon_color, nav, items } = state,
           burger = nav
             ? (
-              <div className={clas(css.lhs, css.burger)} onClick={showNav}>
-                <FontIcon className={css.icon} iconName='GlobalNavButton' />
-              </div>
+              <Fluent.Stack horizontal verticalAlign='center' className={clas(css.burger, css.lhs)} onClick={showNav}>
+                <Fluent.FontIcon className={css.icon} iconName='GlobalNavButton' />
+              </Fluent.Stack>
             ) : (
-              <div className={css.lhs}>
-                <FontIcon className={css.icon} iconName={icon ?? 'WebComponents'} style={{ color: theme.color(icon_color) }} />
-              </div>
+              <Fluent.Stack horizontal verticalAlign='center' className={css.lhs}>
+                <Fluent.FontIcon className={css.icon} iconName={icon ?? 'WebComponents'} style={{ color: theme.color(icon_color) }} />
+              </Fluent.Stack>
             )
 
         return (
-          <div data-test={name} className={css.card}>
+          <Fluent.Stack data-test={name} horizontal verticalAlign='center'>
             {burger}
-            <div className={css.rhs}>
+            <Fluent.StackItem grow={1}>
               <div className={css.title}>{title}</div>
               <div className={css.subtitle}>{subtitle}</div>
-            </div>
+            </Fluent.StackItem>
             {nav && <Navigation items={nav} isOpenB={navB} />}
-          </div>
+            {items && <Toolbar name={`${name}-toolbar`} changed={changed} state={{ items }} />}
+          </Fluent.Stack>
         )
       }
     return { render, changed }
   })
 
 cards.register('header', View, CardEffect.Raised)
-
-
